@@ -1,34 +1,33 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import javax.swing.*;
 
 public class Gamepanel extends JPanel implements Runnable{
-    int x=0;
-    int y=0;
+  
     Thread thread;
+    Enemy enemy=new Enemy();
     Gamepanel(){
         super();
         this.setPreferredSize (new Dimension(500,500));
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.cyan);
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.blue);
-        g.fillRect(x, y , 90, 90);
+       enemy.paintComponent(g);
     }
 public void StartGame(){
     thread=new Thread(this);
     thread.start();
 }
-public void Update(){
+public void update(){
+    enemy.update();
 
 }
 
     @Override
     public void run() {
-    double DrawInterval=1000000000/90;
+    double DrawInterval=1000000000/120;
     double DeltaTime=0;
     long LastpassTime=System.nanoTime();
     long CurrentTime=0;
@@ -41,7 +40,7 @@ public void Update(){
        DeltaTime+=(CurrentTime-LastpassTime)/DrawInterval;
        LastpassTime=CurrentTime;
        if(DeltaTime>=1){
-        x+=1;
+       update();
         repaint();
         DeltaTime--;
        }
