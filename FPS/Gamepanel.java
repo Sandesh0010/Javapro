@@ -6,28 +6,40 @@ import javax.swing.*;
 public class Gamepanel extends JPanel implements Runnable{
   
     Thread thread;
-    Enemy enemy=new Enemy();
+    //Enemy enemy=new Enemy();
+    Enemy[] enemies=new Enemy[10];
     Gamepanel(){
         super();
         this.setPreferredSize (new Dimension(500,500));
-        this.setBackground(Color.cyan);
+        this.setBackground(Color.black);
+        for(int i=0;i<enemies.length;i++){
+            enemies[i]=new Enemy();
+        }
+
+        
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-       enemy.paintComponent(g);
+        for(int i=0;i<enemies.length;i++){
+            enemies[i].paintComponent(g);
+        }
+      
     }
 public void StartGame(){
     thread=new Thread(this);
     thread.start();
 }
 public void update(){
-    enemy.update();
+    for(int i=0;i<enemies.length;i++){
+     
+    enemies[i].update();
 
+}
 }
 
     @Override
     public void run() {
-    double DrawInterval=1000000000/120;
+    double DrawInterval=1000000000/100;
     double DeltaTime=0;
     long LastpassTime=System.nanoTime();
     long CurrentTime=0;
