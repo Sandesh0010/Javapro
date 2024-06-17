@@ -16,8 +16,7 @@ public class Enemy extends JPanel {
         catch (Exception e){
 
         }
-        
-        
+           
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);

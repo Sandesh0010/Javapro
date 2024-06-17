@@ -8,7 +8,7 @@ class Spaceshooter
         f.setResizable(false);//to make unresizble
         Gamepanel panel =new Gamepanel();
         f.add(panel);
-        panel.startGame();
+        panel.StartGame();
         //  f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(500,500);
